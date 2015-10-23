@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <script src="http://library.leoyeh.me/js/jquery/jquery-1.11.1.min.js"></script>
+    <script src="http://library.leoyeh.me/js/chart/chart.min.js"></script>
+  </head>
+  <body>
+    <canvas id="chart" width="600px"></canvas>
+    <script>
+      var ctx = $("#chart").get(0).getContext("2d");
+      var data = {
+        labels: ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"],
+        datasets: [
+          {
+            label: "上週活躍使用者",
+            fillColor: "rgba(220,220,220,0.2)",
+            strokeColor: "rgba(220,220,220,1)",
+            pointColor: "rgba(220,220,220,1)",
+            pointStrokeColor: "#fff",
+            pointHighlightFill: "#fff",
+            pointHighlightStroke: "rgba(220,220,220,1)",
+            data: [18000, 16500, 15900, 15600, 15500, 14000 , 18100]
+          },
+          {
+            label: "本週活躍使用者",
+            fillColor: "rgba(151,187,205,0.2)",
+            strokeColor: "rgba(151,187,205,1)",
+            pointColor: "rgba(151,187,205,1)",
+            pointStrokeColor: "#fff",
+            pointHighlightFill: "#fff",
+            pointHighlightStroke: "rgba(151,187,205,1)",
+            data: [ 18600, 12800, 14800, 14000, 12700, 17000, 19000]
+          }
+        ]
+      };
+      var chart = new Chart(ctx).Line(data);
+    </script>
+  </body>
+</html>
