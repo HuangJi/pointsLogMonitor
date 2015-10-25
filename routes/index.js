@@ -12,7 +12,7 @@ var fs = require('fs');
 /* GET home page. */
 router.get('/', function(req, res, next) {
 	tsv({
-	    input: "../points_log.txt",
+	    input: "points_log.txt",
 	    output: "output.json",
 	    parseRows: true
 	}, function(err, result) {
@@ -30,7 +30,7 @@ router.get('/', function(req, res, next) {
 	    };
 	    console.log('labelList:' + labelList.length);
 		console.log('dataList:' + dataList.length);
-		res.render('index', { title: 'Express', labelList:labelList, dataList:dataList });
+		res.render('index', { title: 'Harrison\'s points monitor', labelList:labelList, dataList:dataList });
 	});
 });
 
