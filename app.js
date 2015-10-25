@@ -82,19 +82,34 @@ app.use(function(err, req, res, next) {
 });
 
 
-request('https://www.codecademy.com/betaAce01707', function (error, response, html) {
-    if (!error && response.statusCode == 200) {
-        var $ = cheerio.load(html);
-        target = $('main').children().eq(3).children().first().children().first().children().eq(1).children().first().text();
-        // target = $('main').children().eq(3).children('h3 .padding-right--quarter').first().text();
-        console.log(target);
-    }
-    else {
-        console.log(error);
-    }
-});
+setTimeout(getPointAndRecord, 1);
 
-
+function getPointAndRecord() {
+  request('https://www.codecademy.com/betaAce01707', function (error, response, html) {
+      if (!error && response.statusCode == 200) {
+          var $ = cheerio.load(html);
+          target = $('main').children().eq(3).children().first().children().first().children().eq(1).children().first().text();
+          console.log(target);
+          var now = new Date();
+          var buffer = new Buffer(now.getTime() + ' ' + target + '\n');
+          fs.open('./points_log', 'a', function(err, fd) {
+          if (err) {
+              throw 'error opening file: ' + err;
+          }
+          fs.write(fd, buffer, 0, buffer.length, null, function(err) {
+              if (err) throw 'error writing file: ' + err;
+              fs.close(fd, function() {
+                  console.log('file written');
+              })
+          });
+      });
+      }
+      else {
+          console.log(error);
+      }
+  });
+  setTimeout(getPointAndRecord, 1000 * 60 * 60 * 6);
+};
 
 
 

@@ -5,28 +5,22 @@ var fs = require('fs');
 
 
 
-
-
-
-
 /* GET home page. */
 router.get('/', function(req, res, next) {
 	tsv({
-	    input: "points_log.txt",
+	    input: "points_log",
 	    output: "output.json",
 	    parseRows: true
 	}, function(err, result) {
 		var labelList = [];
 		var dataList = [];
-	    // console.log(result.length);
 	    var list = [];
 	    var str = '';
 	    for (var i = 0; i < result.length; i++) {
 	        list = result[i][0].split(' ');
-	        str = list[0] + ' ' + list[1];
-	        label = str.substring(0, str.length - 1);
-	        labelList.push(label);
-	        dataList.push(list[2]);
+	        var now = new Date(parseInt(list[0]));
+	        labelList.push(now.toLocaleString());
+	        dataList.push(list[1]);
 	    };
 	    console.log('labelList:' + labelList.length);
 		console.log('dataList:' + dataList.length);
