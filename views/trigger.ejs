@@ -62,9 +62,9 @@
     <script src="javascripts/bootstrap.js"></script>
     <script>
       $('#triggerButton').click(function() {
-        alert( "Handler for .click() called.");
         $.get("/trigger/open", function(data, status){
-          alert("Data: " + data + "\nStatus: " + status);
+          //alert("Data: " + data + "\nStatus: " + status);
+          alert("The Door had been opened!");
         });
       });
     </script>
